@@ -1,5 +1,6 @@
-fastapi
-uvicorn
-sqlalchemy
-requests
-pydantic
+fastapi==0.136.3
+uvicorn==0.48.0
+sqlalchemy==2.0.50
+requests==2.34.2
+pydantic==2.13.4
+pyjwt==2.13.0

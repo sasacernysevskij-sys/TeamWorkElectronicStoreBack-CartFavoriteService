@@ -12,11 +12,10 @@ router = APIRouter(prefix="/api/favorites", tags=["favorites"])
 
 favorite_service = FavoriteService()
 
-
 class FavoriteRequest(BaseModel):
     product_id: int
 
-
+# ---Добавляет товар в избранное. Требует авторизации (Bearer токен)
 @router.post("")
 def add_to_favorites(
     data: FavoriteRequest,
@@ -31,7 +30,7 @@ def add_to_favorites(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Возвращает список избранных товаров пользователя с актуальными ценами
 @router.get("")
 def get_favorites(
     current_user_id: int = Depends(get_current_user_id),
@@ -44,7 +43,7 @@ def get_favorites(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Удаляет один товар из избранного по ID товара
 @router.delete("/{product_id}")
 def remove_from_favorites(
     product_id: int,
@@ -59,7 +58,7 @@ def remove_from_favorites(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Удаляет все товары из избранного пользователя
 @router.delete("")
 def clear_favorites(
     current_user_id: int = Depends(get_current_user_id),

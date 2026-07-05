@@ -2,7 +2,7 @@ import requests
 
 from config import AUTH_SERVICE_URL
 
-
+# ---проверяет токен пользователя
 def get_current_user(token: str):
     try:
         response = requests.get(

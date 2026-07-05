@@ -21,7 +21,7 @@ class CartItemRequest(BaseModel):
 class CartItemUpdateRequest(BaseModel):
     quantity: int = Field(gt=0)
 
-
+# ---Добавляет товар в корзину. Требует авторизации (Bearer токен)
 @router.post("/items")
 def add_to_cart(
     data: CartItemRequest,
@@ -37,7 +37,7 @@ def add_to_cart(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Возвращает содержимое корзины пользователя с актуальными ценами и скидками
 @router.get("")
 def get_cart(
     current_user_id: int = Depends(get_current_user_id),
@@ -50,7 +50,7 @@ def get_cart(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Полностью очищает корзину пользователя
 @router.delete("")
 def clear_cart(
     current_user_id: int = Depends(get_current_user_id),
@@ -63,7 +63,7 @@ def clear_cart(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Очищает корзину пользователя - вызывается из OrderService после создания заказа
 @router.delete("/clear")
 def clear_cart_for_order_service(
     current_user_id: int = Depends(get_current_user_id),
@@ -76,7 +76,7 @@ def clear_cart_for_order_service(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# ---Изменяет количество конкретного товара в корзине
 @router.put("/items/{product_id}")
 def update_cart_item(
     product_id: int,
@@ -93,7 +93,7 @@ def update_cart_item(
 
     return JSONResponse(status_code=status_code, content=result)
 
-
+# Удаляет один товар из корзины по ID товара
 @router.delete("/items/{product_id}")
 def remove_cart_item(
     product_id: int,
