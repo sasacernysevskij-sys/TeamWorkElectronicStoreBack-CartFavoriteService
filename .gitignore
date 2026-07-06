@@ -1,0 +1,20 @@
+# Байт-код Python
+__pycache__/
+*.py[codz]
+
+# Базы данных
+*.db
+
+# Виртуальное окружение
+venv/
+env/
+.venv/
+# .env
+
+# IDE
+.vscode/
+.idea/
+
+# Временные файлы
+*.log
+tempCodeRunnerFile.py
